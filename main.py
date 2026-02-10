@@ -19,7 +19,9 @@ def main():
         if user_input in recipes.keys():
             ingredients = recipes[user_input]["ingredients"]
             if sandwich_maker_instance.check_resources(ingredients):  # inputs list of ingredients for selected size
-                if cashier_instance.transaction_result(cashier_instance.process_coins(), recipes[user_input]["cost"]):
+                coins = cashier_instance.process_coins()
+                cost = recipes[user_input]["cost"]
+                if cashier_instance.transaction_result(coins, cost):
                     sandwich_maker_instance.make_sandwich(user_input, ingredients)
 
         if user_input == "report":
